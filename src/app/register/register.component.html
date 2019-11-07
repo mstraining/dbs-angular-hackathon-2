@@ -1,0 +1,89 @@
+<section class="register-section">
+    <div class="container-fluid">
+        <div class="row registration-form-wrapper flex-column align-items-center justify-content-center">
+            <form [formGroup]='registrationForm' (ngSubmit)='register()' class="registration-form">
+            <h3 class="text-lead text-white mb-3">Register for <b>DBS</b> account</h3>
+            <div class="form-group">
+
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-user" aria-hidden="true"></i></span>
+                    </div>
+
+                    <input type="text" class="form-control" placeholder="username" formControlName="username" [class.is-invalid]="registrationForm.get('username').invalid && registrationForm.get('username').touched">
+
+                    <div class="input-group-append" [class.d-none]="registrationForm.get('username').errors">
+                        <span class="input-group-text text-success"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+
+                </div>
+
+                <!--Error messaging START-->
+                <div *ngIf="registrationForm.get('username').invalid && registrationForm.get('username').touched">
+                    <small *ngIf="registrationForm.get('username').errors?.minlength" class="text-danger">Username length should be minimum 3 characters</small>
+                    <small *ngIf="registrationForm.get('username').errors?.required" class="text-danger">Username is required</small>
+                    <small *ngIf="registrationForm.get('username').errors?.username_error" class="text-danger">Username is invalid</small>
+                    <small *ngIf="registrationForm.get('username').errors?.maxlength" class="text-danger">Username exceeded 12 characters</small>
+                </div>
+                <!--Error messaging END-->
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
+                    </div>
+
+                    <input type="password" class="form-control" placeholder="password" formControlName="password" [class.is-invalid]="registrationForm.get('password').invalid && registrationForm.get('password').touched">
+
+                    <div class="input-group-append" [class.d-none]="registrationForm.get('password').errors">
+                        <span class="input-group-text text-success"><i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+
+                <!-- Error messaging START -->
+                <div *ngIf="registrationForm.get('password').touched && registrationForm.get('password').invalid">
+                    <small *ngIf="registrationForm.get('password').errors?.minlength" class="text-danger">Password length should be minimum 3 characters</small>
+                    <small *ngIf="registrationForm.get('password').errors?.required" class="text-danger">Password is required</small>
+                    <small *ngIf="registrationForm.get('password').errors?.password_error" class="text-danger">Password is invalid, accepts only alpa-numeric</small>
+                    <small *ngIf="registrationForm.get('password').errors?.maxlength" class="text-danger">Password length exceeded 12 characters</small>
+                </div>
+                <!-- Error messaging END -->
+
+            </div>
+
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-key" aria-hidden="true"></i></span>
+                    </div>
+
+                    <input type="password" class="form-control" placeholder="confirm password" formControlName="confirm_password" [class.is-invalid]="registrationForm.get('confirm_password').touched && 
+                    (registrationForm.get('confirm_password').invalid || registrationForm.errors?.confirm_password_error)">
+
+                    <div class="input-group-append" [class.d-none]="registrationForm.get('confirm_password').errors || registrationForm.errors?.confirm_password_error">
+                        <span class="input-group-text text-success">
+                            <i class="fa fa-check" aria-hidden="true"></i></span>
+                    </div>
+                </div>
+
+                <!-- Error messaging START -->
+                <div *ngIf="registrationForm.get('confirm_password').touched && (registrationForm.get('confirm_password').invalid || registrationForm.errors?.confirm_password_error)">
+                    <small *ngIf="registrationForm.get('confirm_password').errors?.minlength" class="text-danger">Password length should be minimum 3 characters</small>
+                    <small *ngIf="registrationForm.get('confirm_password').errors?.required" class="text-danger">Password is required</small>
+                    <small *ngIf="registrationForm.get('confirm_password').errors?.password_error" class="text-danger">Password is invalid, accepts only alpa-numeric</small>
+                    <small *ngIf="registrationForm.errors?.confirm_password_error" class="text-danger">Confirm password doesn't match</small>
+                    <small *ngIf="registrationForm.get('confirm_password').errors?.maxlength" class="text-danger">Password length exceeded 12 characters</small>
+                </div>
+                <!-- Error messaging END -->
+            </div>
+        
+            <div class="d-flex flex-md-row flex-sm-column">
+                <button class="btn btn-small btn-light mx-1" type="submit" [disabled]="registrationForm.invalid">Register</button>
+                <a class="btn btn-small btn-info mx-1" [routerLink]="['/login']">Existing user? Login here.</a>
+            </div>
+        </form>
+        </div>
+    </div>
+</section>

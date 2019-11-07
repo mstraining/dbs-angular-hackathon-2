@@ -1,0 +1,10 @@
+.login-form-wrapper{
+    height: 100vh;
+    background-image: linear-gradient( rgba(22, 21, 21, 0.5), rgba(46, 28, 28, 0.5) ), url(/assets/img/login-page.jpg);
+    background-size: cover;
+    overflow: hidden;
+}
+
+.login-form {
+    height: 50vh;
+}
